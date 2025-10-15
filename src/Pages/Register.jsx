@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "../Components/Container";
 import { Link } from "react-router";
+import { AuthContext } from "../Contexts/AuthContexts/AuthContext";
 
 const Register = () => {
+  const {createUser} = useContext(AuthContext)
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -10,6 +12,8 @@ const Register = () => {
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value
     console.log({name, email, password, confirmPassword})
+
+    createUser(email, password)
   };
   return (
     <div>
